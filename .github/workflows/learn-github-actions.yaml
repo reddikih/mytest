@@ -12,3 +12,14 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+  release-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create release
+        uses: actions/create-release@v1
+	with:
+	  tag_name: ${{ github.ref }}
+	  release_name: ${{ github.ref }}
+	  draft: true
+	  prerelease: false
+      
