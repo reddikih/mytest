@@ -44,6 +44,6 @@ jobs:
 
       - run: java -version
 
-      - run: $JAVA_HOME_11_x64 -version
+      - run: $JAVA_HOME_11_X64 -version
 
 
