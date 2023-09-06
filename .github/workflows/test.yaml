@@ -2,8 +2,11 @@
 name: run-by-manually-test
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [workflow_dispatch]
+# env:
+#     GH_TOKEN: ${{ github.token }}
 env:
-    GH_TOKEN: ${{ github.token }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   test1:
     runs-on: ubuntu-latest
