@@ -45,5 +45,6 @@ jobs:
       - run: java -version
 
       - run: $JAVA_HOME_11_X64/bin/java -version
+      - run: $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest
 
 
