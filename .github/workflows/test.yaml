@@ -5,7 +5,8 @@ on: [workflow_dispatch]
 # env:
 #     GH_TOKEN: ${{ github.token }}
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
 
 jobs:
   test1:
