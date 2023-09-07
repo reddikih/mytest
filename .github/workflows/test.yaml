@@ -32,7 +32,7 @@ jobs:
         run: |
           # シェルコマンドを実行し、その結果を変数に格納
           # result=$(echo "Hello, World!")
-          result=$(gh auth token)
+          result=$(gh project list --owner reddikih)
           echo "result=$result" >> $GITHUB_OUTPUT  # 出力をGitHub Actionsの出力にセット
       - name: Use Shell Command Output
         run: |
