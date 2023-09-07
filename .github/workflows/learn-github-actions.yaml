@@ -1,51 +1,41 @@
-# sample
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-# on: [push]
-on: [workflow_dispatch]
-
+name: Example Workflow
+on:
+  push:
+    branches:
+      - main
 jobs:
-  check-bats-version:
+  example_job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
-  # release-test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - run: echo hello release
-  #     - uses: actions/create-release@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       with:
-  #         tag_name: ${{ github.ref }}
-  #         release_name: ${{ github.ref }}
-  #         body: |
-  #           Changes in this Release
-  #           - First Change
-  #           - Second Change
-  #         draft: true
-  #         prerelease: false
-  release-test2:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Setup JDK 11
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: |
-            11
-            8
+      - name: Install GitHub CLI
+        run: |
+          # GitHub CLIをインストール
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/local/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [signed-by=/usr/local/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          apt-get update
+          apt-get install gh
+        shell: bash
+      - name: Install jq
+        run: sudo apt-get -y install jq
 
-      - run: java -version
-      - run: $JAVA_HOME_11_X64/bin/java -version
-      - run: gh --version
-      - run: DEBUG=true $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest
-
-
+      - name: Run gh project list command and capture output
+        id: gh_project_list
+        run: |
+          # gh project listコマンドを実行し、その結果を変数に格納
+          gh_project_list=$(gh project list --json)
+          echo "::set-output name=gh_project_list::$gh_project_list"
+          
+      - name: Use gh project list output
+        run: |
+          # スクリプト内でJSONパースしてデータを抽出
+          gh_output="${{ steps.gh_project_list.outputs.gh_project_list }}"
+          project_names=$(echo "$gh_output" | jq -r '.[].name')
+          echo "GitHub Projects in the repository:"
+          echo "$project_names"
+        shell: bash
+        # jqコマンドを実行するためにjqパッケージをインストール
+        env:
+          DEBIAN_FRONTEND: noninteractive
