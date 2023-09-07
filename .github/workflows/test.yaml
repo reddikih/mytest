@@ -40,39 +40,3 @@ jobs:
           # スクリプト内で変数を使用して結果を表示
           output="${{ steps.shell_command.outputs.result }}"
           echo "The result is $output"
-
-  example_job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install GitHub CLI
-        run: |
-          # GitHub CLIをインストール
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/local/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [signed-by=/usr/local/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          apt-get update
-          apt-get install gh
-        shell: bash
-
-      - name: Run gh project list command and capture output
-        id: gh_project_list
-        run: |
-          # gh project listコマンドを実行し、その結果を変数に格納
-          gh_project_list=$(gh project list --json)
-          echo "::set-output name=gh_project_list::$gh_project_list"
-          
-      - name: Use gh project list output
-        run: |
-          # スクリプト内でJSONパースしてデータを抽出
-          gh_output="${{ steps.gh_project_list.outputs.gh_project_list }}"
-          project_names=$(echo "$gh_output" | jq -r '.[].name')
-          echo "GitHub Projects in the repository:"
-          echo "$project_names"
-        shell: bash
-        # jqコマンドを実行するためにjqパッケージをインストール
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: sudo apt-get -y install jq
-
