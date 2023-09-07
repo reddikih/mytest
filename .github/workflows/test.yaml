@@ -14,6 +14,10 @@ jobs:
       - name: std output test
         shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
         run: gh project list --owner reddikih
+      # This doesn't show any output because GitHub Actions doesn't provide stdout by default.
+      # - name: gh auth test
+      #   # shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
+      #   run: gh auth token
       - name: gh auth test
-        # shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
+        shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
         run: gh auth token
