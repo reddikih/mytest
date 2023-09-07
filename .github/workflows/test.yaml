@@ -20,4 +20,5 @@ jobs:
       #   run: gh auth token
       - name: gh auth test
         shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
-        run: gh auth token
+        run: gh auth token > output.txt
+        run: echo $output.txt
