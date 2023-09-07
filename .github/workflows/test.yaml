@@ -18,7 +18,8 @@ jobs:
       # - name: gh auth test
       #   # shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
       #   run: gh auth token
-      - name: gh auth test
+      - name: gh auth test 1
         # shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
         run: gh auth token > output
-      - run: cat output
+      - name: gh auth test 2
+        run: result=$(cat output);echo $result
