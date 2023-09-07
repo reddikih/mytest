@@ -10,14 +10,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install GitHub CLI
-        run: |
-          # GitHub CLIをインストール
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | gpg --dearmor -o /usr/local/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [signed-by=/usr/local/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          apt-get update
-          apt-get install gh
-        shell: bash
       - name: Install jq
         run: sudo apt-get -y install jq
 
