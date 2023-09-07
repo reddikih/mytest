@@ -23,3 +23,18 @@ jobs:
         run: gh auth token > output 2>&1
       - name: gh auth test 2
         run: result=$(cat output);echo $result
+
+  example_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Shell Command and Capture Output
+        id: shell_command
+        run: |
+          # シェルコマンドを実行し、その結果を変数に格納
+          result=$(echo "Hello, World!")
+          echo "::set-output name=result::$result"  # 出力をGitHub Actionsの出力にセット
+      - name: Use Shell Command Output
+        run: |
+          # スクリプト内で変数を使用して結果を表示
+          output="${{ steps.shell_command.outputs.result }}"
+          echo "The result is $output"
