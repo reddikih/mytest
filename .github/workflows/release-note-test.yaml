@@ -2,8 +2,8 @@ name: release note test
 run-name: ${{ github.actor }} release note test
 on: [workflow_dispatch]
 env:
-  GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
   # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
 
 jobs:
   release-test:
@@ -21,14 +21,11 @@ jobs:
       - name: JDK version check
         run: $JAVA_HOME_11_X64/bin/java -version
       - name: run release note script
-        run: |
-          $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > mytest.md
-          RN_BODY=$(cat mytest.md)
-      - name: show release note
         id: rn_body
         run: |
+          $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > rnbody.md
           echo "rnbody<<EOF" >> $GITHUB_OUTPUT
-          echo "$(cat mytest.md)" >> $GITHUB_OUTPUT
+          echo "$(cat rnbody.md)" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create release
