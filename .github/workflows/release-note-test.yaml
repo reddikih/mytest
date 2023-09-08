@@ -27,8 +27,9 @@ jobs:
       - name: show release note
         id: rn_body
         run: |
-          cat mytest.md
-          echo "rnbody=$(cat mytest.md)" >> $GITHUB_OUTPUT
+          echo "rnbody<<EOF" >> $GITHUB_OUTPUT
+          echo "$(cat mytest.md)" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create release
         id: create_release
