@@ -1,0 +1,19 @@
+name: release note test
+run-name: ${{ github.actor }} release note test
+on: [workflow_dispatch]
+env:
+  GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+
+jobs:
+  release-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 8 and 11 (default 8)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: |
+            11
+            8
+      - name: run release note script
+        run: $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest
