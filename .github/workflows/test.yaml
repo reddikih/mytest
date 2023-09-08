@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: std output test
         # run: gh project list --owner reddikih
-        run: gh project list --owner reddikih | awk '/ScalarDB/ {print}' | awk '/mytest/ {print $1}'
+        run: gh project list --owner reddikih | awk '/ScalarDB/ {print}' | awk '/1.0.0/ {print $1}'
       - name: gh auth test 1
         # shell: 'script -q -e -c "stty cols 200 rows 100; bash {0}"'
         run: gh auth token > output 2>&1
