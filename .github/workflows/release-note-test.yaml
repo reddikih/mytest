@@ -21,7 +21,9 @@ jobs:
       - name: JDK version check
         run: $JAVA_HOME_11_X64/bin/java -version
       - name: run release note script
-        run: $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > mytest.md
+        run: |
+          $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > mytest.md
+          RN_BODY=$(cat mytest.md)
       - name: show release note
         run: cat mytest.md
 
@@ -33,6 +35,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: $(cat mytest.md)
+          body: $RN_BODY
           draft: true
           prerelease: false
