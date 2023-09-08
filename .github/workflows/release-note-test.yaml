@@ -24,3 +24,15 @@ jobs:
         run: $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > mytest.md
       - name: show release note
         run: cat mytest.md
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: $(cat mytest.md)
+          draft: true
+          prerelease: false
