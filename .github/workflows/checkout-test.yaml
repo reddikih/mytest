@@ -17,6 +17,8 @@ jobs:
           sparse-checkout-cone-mode: false
           sparse-checkout: |
             src/main/java
+      - name: Move scripts to the working directory
+        run: cp ${{ github.workspace }}/src/main/java/* ${{ github.workspace }}
       - name: show directory
         run: ls -laR
       # - name: Set up JDK 8 and 11 (default 8)
