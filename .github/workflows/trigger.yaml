@@ -6,8 +6,8 @@ env:
   GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
 
 jobs:
-  release-test:
+  trigger-workflow:
     runs-on: ubuntu-latest
     # permissions: read-all
     steps:
-      -run: echo "trigger workflow started."
+      - run: echo "trigger workflow started."
