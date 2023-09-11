@@ -13,6 +13,7 @@ jobs:
         with:
           repository: reddikih/release-note-script
           token: ${{ secrets.MY_PAT }}
+          path: ${{ GITHUB_WORKSPACE }}
           sparse-checkout: |
             src/main/java/ReleaseNoteCreation.java
       - name: show directory
