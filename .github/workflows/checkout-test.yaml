@@ -2,8 +2,7 @@ name: Checkout test
 run-name: ${{ github.actor }} Checkout test
 on: [workflow_dispatch]
 env:
-  # GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
-  GH_TOKEN: ${{ secrets.MY_PAT }}
+  # GH_TOKEN: ${{ secrets.MY_PAT }}
 
 jobs:
   checkout-test:
@@ -13,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: reddikih/release-note-script
-          token: ${{ secrets.MY_TEST_TOKEN }}
+          token: ${{ secrets.MY_PAT }}
           sparse-checkout: |
             src/main/java/ReleaseNoteCreation.java
       - name: show directory
