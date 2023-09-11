@@ -27,4 +27,4 @@ jobs:
       - name: Move scripts to the working directory
         run: cp ${{ github.workspace }}/src/main/java/* ${{ github.workspace }}
       - name: Checkout the ScalarDB's release notes
-        uses: actions/checkout@v4
+        run: gh release view v0.0.1 --repo reddikih/dummy-scalardb --json body -q .body > scalardb.md
