@@ -1,0 +1,27 @@
+name: Checkout test
+run-name: ${{ github.actor }} Checkout test
+on: [workflow_dispatch]
+# env:
+#   GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+
+jobs:
+  checkout-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout release note scripts
+        uses: actions/checkout@v4
+        with:
+          repository: reddikih/release-note-script
+          sparse-checkout: |
+            src/main/java/ReleaseNoteCreation.java
+      - name: show directory
+        run: ls -la
+      # - name: Set up JDK 8 and 11 (default 8)
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: 'temurin'
+      #     java-version: |
+      #       11
+      #       8
+      # - name: JDK version check
+      #   run: $JAVA_HOME_11_X64/bin/java -version
