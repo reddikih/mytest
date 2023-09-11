@@ -4,7 +4,7 @@ run-name: ${{ github.actor }} release note test
 on:
   workflow_run:
     workflows: [trigger-workflow]
-      types:
+    types:
         - completed
 env:
   # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
