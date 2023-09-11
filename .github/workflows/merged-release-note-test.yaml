@@ -30,7 +30,7 @@ jobs:
         run: |
           gh release view v0.0.1 --repo reddikih/dummy-scalardb --json body -q .body > scalardb.md
           gh release view v0.0.1 --repo reddikih/dummy-scalardb-cluster --json body -q .body > cluster.md
-          gh release view v0.0.1 --repo reddikih/dummy-scalardb-graphqlql --json body -q .body > graphql.md
+          gh release view v0.0.1 --repo reddikih/dummy-scalardb-graphql --json body -q .body > graphql.md
           gh release view v0.0.1 --repo reddikih/dummy-scalardb-sql --json body -q .body > sql.md
       - name: Create merged release note
         run: |
