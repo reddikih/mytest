@@ -9,6 +9,11 @@ jobs:
   release-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Set version
+        id: version
+        run: |
+          VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/v##g")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
       - name: Set up JDK 8 and 11 (default 8)
         uses: actions/setup-java@v3
         with:
