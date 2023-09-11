@@ -29,4 +29,9 @@ jobs:
       - name: Checkout the ScalarDB's release notes
         run: |
           gh release view v0.0.1 --repo reddikih/dummy-scalardb --json body -q .body > scalardb.md
-          cat scalardb.md
+          gh release view v0.0.1 --repo reddikih/dummy-scalardb-cluster --json body -q .body > cluster.md
+          gh release view v0.0.1 --repo reddikih/dummy-scalardb-graphql --json body -q .body > graphql.md
+          gh release view v0.0.1 --repo reddikih/dummy-scalardb-sql --json body -q .body > sql.md
+      - name: Create merged release note
+        run: |
+          java --source 11 MergeReleaseNotes.java scalardb.md cluster.md graphql.md sql.md
