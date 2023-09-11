@@ -1,6 +1,11 @@
 name: release note test
 run-name: ${{ github.actor }} release note test
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
+on:
+  workflow_run:
+    workflows: [trigger-workflow]
+      types:
+        - completed
 env:
   # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
