@@ -1,0 +1,13 @@
+name: A trigger workflow
+run-name: ${{ github.actor }} A trigger workflow
+on: [workflow_dispatch]
+env:
+  # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+
+jobs:
+  release-test:
+    runs-on: ubuntu-latest
+    # permissions: read-all
+    steps:
+      -run: echo "trigger workflow started."
