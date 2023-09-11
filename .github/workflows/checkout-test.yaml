@@ -16,7 +16,7 @@ jobs:
           path: ${{ github.workspace }}
           sparse-checkout-cone-mode: false
           sparse-checkout: |
-            src/main/java/ReleaseNoteCreation.java
+            src/main/java
       - name: show directory
         run: ls -laR
       # - name: Set up JDK 8 and 11 (default 8)
