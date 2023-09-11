@@ -33,5 +33,20 @@ jobs:
           gh release view v0.0.1 --repo reddikih/dummy-scalardb-graphql --json body -q .body > graphql.md
           gh release view v0.0.1 --repo reddikih/dummy-scalardb-sql --json body -q .body > sql.md
       - name: Create merged release note
+        id: rn_body
         run: |
-          java --source 11 MergeReleaseNotes.java scalardb.md cluster.md graphql.md sql.md
+          java --source 11 MergeReleaseNotes.java scalardb.md cluster.md graphql.md sql.md > rnbody.md
+          echo "rnbody<<EOF" >> $GITHUB_OUTPUT
+          echo "$(cat rnbody.md)" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.rn_body.outputs.rnbody }}
+          draft: true
+          prerelease: false
