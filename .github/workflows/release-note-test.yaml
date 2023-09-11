@@ -17,7 +17,19 @@ jobs:
           java-version: |
             11
             8
-      - uses: actions/checkout@v4
+      - name: Checkout the current repository
+        uses: actions/checkout@v4
+      - name: checkout release note scripts
+        uses: actions/checkout@v4
+        with:
+          repository: reddikih/release-note-script
+          token: ${{ secrets.MY_PAT }}
+          path: ${{ github.workspace }}
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/main/java
+      - name: Move scripts to the working directory
+        run: cp ${{ github.workspace }}/src/main/java/* ${{ github.workspace }}
       - name: JDK version check
         run: $JAVA_HOME_11_X64/bin/java -version
       - name: run release note script
