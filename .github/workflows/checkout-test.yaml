@@ -2,7 +2,8 @@ name: Checkout test
 run-name: ${{ github.actor }} Checkout test
 on: [workflow_dispatch]
 env:
-  GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+  # GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+  GH_TOKEN: ${{ secrets.MY_PAT }}
 
 jobs:
   checkout-test:
