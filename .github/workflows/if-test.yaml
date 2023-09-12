@@ -1,0 +1,15 @@
+name: if test
+run-name: ${{ github.actor }} if test
+on: [workflow_dispatch]
+# env:
+#   # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#   GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
+
+jobs:
+  if-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: env var
+        env:
+          VAR: true
+      - run: echo $VAR
