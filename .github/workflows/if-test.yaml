@@ -19,8 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ truetest }}
-          release_name: ${{ truetest }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
           body: 'true case'
           draft: true
           prerelease: false
@@ -30,8 +30,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ falsetest }}
-          release_name: ${{ falsetest }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
           body: 'false case'
           draft: true
           prerelease: false
