@@ -6,7 +6,7 @@ env:
   GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
 
 jobs:
-  release-test:
+  merge-release-notes-test:
     runs-on: ubuntu-latest
     steps:
       - name: Set version
