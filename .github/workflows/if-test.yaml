@@ -12,6 +12,7 @@ jobs:
       VAR: true
     steps:
       - run: echo $VAR
+      - uses: actions/checkout@v4
       - name: if true
         if: ${{ env.VAR == 'true' }}
         uses: actions/create-release@v1
