@@ -9,12 +9,28 @@ jobs:
   if-test:
     runs-on: ubuntu-latest
     env:
-      VAR: false
+      VAR: true
     steps:
       - run: echo $VAR
       - name: if true
         if: ${{ env.VAR == 'true' }}
-        run: echo "run true"
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ truetest }}
+          release_name: ${{ truetest }}
+          body: 'true case'
+          draft: true
+          prerelease: false
       - name: if false
         if: ${{ env.VAR != 'true' }}
-        run: echo "false"
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ falsetest }}
+          release_name: ${{ falsetest }}
+          body: 'false case'
+          draft: true
+          prerelease: false
