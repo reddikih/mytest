@@ -8,8 +8,7 @@ on: [workflow_dispatch]
 jobs:
   if-test:
     runs-on: ubuntu-latest
+    env:
+      VAR: true
     steps:
-      - name: env var
-        env:
-          VAR: true
       - run: echo $VAR
