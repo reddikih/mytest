@@ -1,5 +1,5 @@
 name: Merge release note test
-run-name: ${{ github.actor }} Merged release note test
+run-name: ${{ github.actor }} Merge release note test
 on: [workflow_dispatch]
 env:
   # GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
