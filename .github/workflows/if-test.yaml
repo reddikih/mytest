@@ -9,7 +9,7 @@ jobs:
   if-test:
     runs-on: ubuntu-latest
     env:
-      VAR: true
+      VAR: false
     steps:
       - run: echo $VAR
       - name: if true
