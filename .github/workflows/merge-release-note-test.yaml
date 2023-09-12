@@ -1,4 +1,4 @@
-name: Merged release note test
+name: Merge release note test
 run-name: ${{ github.actor }} Merged release note test
 on: [workflow_dispatch]
 env:
