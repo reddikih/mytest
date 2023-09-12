@@ -13,8 +13,8 @@ jobs:
     steps:
       - run: echo $VAR
       - name: if true
-        if: $VAR = "true"
+        if: ${{ env.VAR == "true" }}
         run: echo "run true"
       - name: if false
-        if: $VAR != "true"
+        if: ${{ env.VAR != "true" }}
         run: echo "false"
