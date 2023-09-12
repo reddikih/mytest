@@ -12,3 +12,9 @@ jobs:
       VAR: true
     steps:
       - run: echo $VAR
+      - name: if true
+        if: $VAR = "true"
+        run: echo "run true"
+      - name: if false
+        if: $VAR != "true"
+        run: echo "false"
