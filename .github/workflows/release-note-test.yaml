@@ -1,11 +1,11 @@
 name: release note test
 run-name: ${{ github.actor }} release note test
-on: [workflow_dispatch]
-# on:
-#   workflow_run:
-#     workflows: [trigger-workflow]
-#     types:
-#         - completed
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [trigger-workflow]
+    types:
+        - completed
 
 jobs:
   release-note-creation-test:
