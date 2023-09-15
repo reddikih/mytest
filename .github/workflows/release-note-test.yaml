@@ -39,9 +39,9 @@ jobs:
           GH_TOKEN: ${{ secrets.MY_TEST_TOKEN }}
         run: |
           $JAVA_HOME_11_X64/bin/java --source 11 ReleaseNoteCreation.java reddikih ScalarDB 1.0.0 mytest > rnbody.md
-          echo "rnbody<<EOF" >> $GITHUB_OUTPUT
-          echo "$(cat rnbody.md)" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          # echo "rnbody<<EOF" >> $GITHUB_OUTPUT
+          # echo "$(cat rnbody.md)" >> $GITHUB_OUTPUT
+          # echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create release
         id: create_release
@@ -51,6 +51,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: ${{ steps.rn_body.outputs.rnbody }}
+          # body: ${{ steps.rn_body.outputs.rnbody }}
+          body_path: rnbody.md
           draft: true
           prerelease: false
