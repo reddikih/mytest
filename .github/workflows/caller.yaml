@@ -5,6 +5,6 @@ on:
 
 jobs:
   caller-callee-test:
-    uses: ./.github/workflows/action.yaml
+    uses: ./.github/workflows/callee.yaml
     with:
       version: "version"
