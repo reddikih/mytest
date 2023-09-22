@@ -5,11 +5,6 @@ on:
 
 jobs:
   caller-callee-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: call another workflow
-        # uses: ./.github/workflows/callee.yaml
-        uses: ./.github/workflows/action.yaml
-        with:
-          version: "version"
-      
+    uses: ./.github/workflows/action.yaml
+    with:
+      version: "version"
