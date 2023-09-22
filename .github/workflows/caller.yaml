@@ -1,0 +1,14 @@
+name: caller
+
+on:
+  workflow_dispatch
+
+jobs:
+  caller-callee-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: call another workflow
+        uses: ./.github/workflows/callee.yaml
+        with:
+          version: "version"
+      
