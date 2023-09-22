@@ -1,0 +1,15 @@
+name: caller
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  callee-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: called by caller
+        run: echo ${{ inputs.version }}
